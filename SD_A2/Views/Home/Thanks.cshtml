@@ -1,0 +1,31 @@
+﻿@model SD_A2.Models.Drinks
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+
+    <title>Thanks</title>
+</head>
+<body class="text-center" style="margin: 150px">
+    <p>
+
+        @if (Model.Acceptance == true)
+        {
+            <h1>Thank you</h1>
+            <h3>Your choice is @Model.DrinkSizes @Model.DrinkFlavours with @Model.CO2 %CO2 </h3>
+            <h4>Please wait for your drink</h4>
+        }
+        else
+        {
+            @:<h3>Sorry for the inconvenience!</h3>
+        }
+
+
+    </p>
+</body>
+</html>

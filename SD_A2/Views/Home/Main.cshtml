@@ -1,0 +1,46 @@
+﻿@model SD_A2.Models.Drinks
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+</head>
+<body style="margin-top: 15%; margin-left: 30%; margin-right: 30%; margin-bottom: 25%">
+    <form class="p-a-1" asp-action="Main" method="post">
+        <div asp-validation-summary="All"></div>
+        <div class="form-group">
+            <label>Choose a Cup Size</label>
+            <select class="form-control" asp-for="DrinkSizes">
+                <option>Choose an option</option>
+                <option value=0>Small</option>
+                <option value=1>Medium</option>
+                <option value=2>Large</option>
+                <option value=3>Extra Large</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Choose a Flavour</label>
+            <select class="form-control" asp-for="DrinkFlavours">
+                <option>Choose an option</option>
+                <option value=0>Orange</option>
+                <option value=1>Wintermelon</option>
+                <option value=2>Apple</option>
+                <option value=3>Banana</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="CO2">CO2 ratio:</label>
+            <input id="CO2" class="form-control" asp-for="CO2" />
+        </div>
+        <br />
+        <button name="confirm" class="btn btn-primary" asp-action="Main" type="submit" value="true">
+            Confirm
+        </button>
+    </form>
+</body>
+</html>

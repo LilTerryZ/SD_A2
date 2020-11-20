@@ -1,0 +1,121 @@
+﻿
+@model SD_A2.Models.Drinks
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+
+    <title>Thanks</title>
+</head>
+<body class="text-center" style="margin: 150px">
+    <form class="p-a-1" asp-action="GetDrink" method="post">
+        <p>
+            @if (Model.CupNum == true & Model.SyrupNum == true & Model.CO2Num == true)
+            {
+                @:<h3>Your choice is @Model.DrinkSizes @Model.DrinkFlavours with @Model.CO2%CO2 </h3>
+            }
+            else if (Model.CupNum == false)
+            {
+                @:<h3>Sorry, the @Model.DrinkSizes cup  is currently unavailable.</h3>
+                Drinks.Sizes size = Drinks.Sizes.Small;
+                @if (size == @Model.DrinkSizes)
+                {
+                    @:<h4>Would you like to try Large?</h4>
+                    <button name="acceptlg" class="btn btn-primary" type="submit" value="yes">
+                        YES
+                    </button>
+                    <button name="cancel" class="btn btn-primary" type="submit" value="no">
+                        NO
+                    </button>
+                }
+                else
+                {
+
+                    @:<h4>Would you like to try small?</h4>
+                    <button name="acceptsm" class="btn btn-primary" type="submit" value="yes">
+                        YES
+                    </button>
+                    <button name="cancel" class="btn btn-primary" type="submit" value="no">
+                        NO
+                    </button>
+                }
+
+            }
+            else if (Model.SyrupNum == false)
+            {
+                @:<h3>Sorry, @Model.DrinkFlavours is out of stock.</h3>
+                Drinks.Flavours flavour = Drinks.Flavours.Orange;
+                @if (flavour == @Model.DrinkFlavours)
+                {
+
+                    @:<h4>Would you like to try Apple?</h4>
+                    <button name="acceptap" class="btn btn-primary" type="submit" value="yes">
+                        YES
+                    </button>
+                    <button name="cancel" class="btn btn-primary" type="submit" value="no">
+                        NO
+                    </button>
+                }
+                else
+                {
+                    Model.DrinkFlavours = Drinks.Flavours.Orange;
+                    @:<h4>Would you like to try Orange?</h4>
+                    <button name="acceptor" class="btn btn-primary" type="submit" value="yes">
+                        YES
+                    </button>
+                    <button name="cancel" class="btn btn-primary" type="submit" value="no">
+                        NO
+                    </button>
+                }
+
+
+            }
+            else if (Model.CO2Num == false)
+            {
+                @:<h3>Sorry, CO2 is currently unavailable</h3>
+                @:<h4>Would you like to remove CO2?</h4>
+                <button name="acceptco2" class="btn btn-primary" type="submit" value="yes">
+                    YES
+                </button>
+                <button name="cancel" class="btn btn-primary" type="submit" value="no">
+                    NO
+                </button>
+            }
+
+            else if (Model.CupNum == false & Model.SyrupNum == false)
+            {
+                @:<h3>Sorry, the cup size and syrup you chose is out of stock.</h3>
+                <button name="cancel" class="btn btn-primary" type="submit" value="no">
+                    Cancel
+                </button>
+            }
+            else if (Model.CupNum == false & Model.CO2Num == false)
+            {
+                @:<h3>Sorry, the cup size you chose and CO2 is currently unavailable.</h3>
+                <button name="cancel" class="btn btn-primary" type="submit" value="no">
+                    Cancel
+                </button>
+            }
+            else if (Model.SyrupNum == false & Model.CO2Num == false)
+            {
+                @:<h3>Sorry, the syrup you chose and CO2 is currently unavailable.</h3>
+                <button name="cancel" class="btn btn-primary" type="submit" value="no">
+                    Cancel
+                </button>
+            }
+            else if (Model.ChillPlate == false)
+            {
+                @:<h3>Sorry, the chilling plates were turned off, please wait for assistance.</h3>
+                <button name="cancel" class="btn btn-primary" type="submit" value="no">
+                    Confirm
+                </button>
+            }
+        </p>
+</form>
+</body>
+</html>
